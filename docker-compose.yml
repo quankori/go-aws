@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  web:
+    build: ./docker/nginx
+    volumes:
+        - ./docker/nginx:/etc/nginx/conf.d/
+        - .:/app
+    ports:
+        - '80:80'
+    links:
+        - api:api
+  api:
+    build: .
+    volumes:
+      - .:/app

@@ -1,35 +1,21 @@
 package ip
 
 import (
-	"errors"
-	"fmt"
-	"net"
+	"io/ioutil"
+	"net/http"
 )
 
 // LocalIP get the host machine local IP address
-func LocalIP() (net.IP, error) {
-	ifaces, err := net.Interfaces()
+func LocalIP() []byte {
+	url := "https://api.ipify.org?format=text"
+	resp, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
-	for _, i := range ifaces {
-		addrs, err := i.Addrs()
-		if err != nil {
-			return nil, err
-		}
-
-		for _, addr := range addrs {
-			fmt.Println(addr)
-			var ip net.IP
-			switch v := addr.(type) {
-			case *net.IPNet:
-				ip = v.IP.To4()
-			case *net.IPAddr:
-				ip = v.IP.To4()
-			}
-			return ip, nil
-		}
+	defer resp.Body.Close()
+	ip, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
 	}
-
-	return nil, errors.New("no IP")
+	return ip
 }

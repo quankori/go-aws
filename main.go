@@ -11,7 +11,7 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		ip, _ := ip.LocalIP()
+		ip := string(ip.LocalIP())
 		msg := fmt.Sprint("Server is running IP: ", ip)
 		return c.JSON(http.StatusOK, msg)
 	})

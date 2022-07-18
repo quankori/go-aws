@@ -2,6 +2,7 @@ package ip
 
 import (
 	"errors"
+	"fmt"
 	"net"
 )
 
@@ -18,12 +19,13 @@ func LocalIP() (net.IP, error) {
 		}
 
 		for _, addr := range addrs {
+			fmt.Println(addr)
 			var ip net.IP
 			switch v := addr.(type) {
 			case *net.IPNet:
-				ip = v.IP
+				ip = v.IP.To4()
 			case *net.IPAddr:
-				ip = v.IP
+				ip = v.IP.To4()
 			}
 			return ip, nil
 		}

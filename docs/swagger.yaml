@@ -28,4 +28,29 @@ paths:
       summary: Get ip data
       tags:
       - IP
+  /s3:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload file
+      parameters:
+      - description: this is a test file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.EchoR'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.EchoR'
+      summary: Post upload file
+      tags:
+      - S3
 swagger: "2.0"

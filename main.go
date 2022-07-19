@@ -1,19 +1,32 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/quankori/go-aws/internals/ip"
+	"github.com/labstack/echo/v4/middleware"
+	"github.com/quankori/go-aws/api"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		ip := string(ip.LocalIP())
-		msg := fmt.Sprint("Server is running IP: ", ip)
-		return c.JSON(http.StatusOK, msg)
-	})
+
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
+
+	e.GET("/", healthCheck)
+
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
+
+	api.Router(e)
+
 	e.Logger.Fatal(e.Start(":8080"))
+}
+
+func healthCheck(c echo.Context) error {
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"data": "Server is up and running",
+	})
 }

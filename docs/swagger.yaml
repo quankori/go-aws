@@ -1,0 +1,31 @@
+definitions:
+  response.EchoR:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /ip:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.EchoR'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.EchoR'
+      summary: Get ip data
+      tags:
+      - IP
+swagger: "2.0"

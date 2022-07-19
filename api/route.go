@@ -7,7 +7,6 @@ import (
 
 // Router func
 func Router(e *echo.Echo) {
-
 	apiV1 := e.Group("/api/v1")
 	controllers.RouterIP(apiV1)
 }

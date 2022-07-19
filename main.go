@@ -7,6 +7,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/quankori/go-aws/api"
 	echoSwagger "github.com/swaggo/echo-swagger"
+
+	_ "github.com/swaggo/echo-swagger/example/docs"
 )
 
 func main() {
@@ -18,7 +20,7 @@ func main() {
 
 	e.GET("/", healthCheck)
 
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.GET("/docs/*", echoSwagger.WrapHandler)
 
 	api.Router(e)
 

@@ -8,13 +8,12 @@ import (
 	"github.com/quankori/go-aws/api"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	_ "github.com/swaggo/echo-swagger/example/docs"
+	_ "github.com/quankori/go-aws/docs"
 )
 
 func main() {
 	e := echo.New()
 
-	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())
 

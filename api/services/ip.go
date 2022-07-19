@@ -6,7 +6,7 @@ import (
 )
 
 // LocalIP get the host machine local IP address
-func LocalIP() []byte {
+func LocalIP() string {
 	url := "https://api.ipify.org?format=text"
 	resp, err := http.Get(url)
 	if err != nil {
@@ -17,5 +17,6 @@ func LocalIP() []byte {
 	if err != nil {
 		panic(err)
 	}
-	return ip
+	msg := string(ip[:])
+	return msg
 }

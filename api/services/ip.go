@@ -3,12 +3,14 @@ package services
 import (
 	"io/ioutil"
 	"net/http"
+
+	"github.com/quankori/go-aws/configs"
 )
 
 // LocalIP get the host machine local IP address
 func LocalIP() string {
-	url := "https://api.ipify.org?format=text"
-	resp, err := http.Get(url)
+	config, _ := configs.LoadConfig()
+	resp, err := http.Get(config.IpURI)
 	if err != nil {
 		panic(err)
 	}

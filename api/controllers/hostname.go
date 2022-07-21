@@ -7,19 +7,19 @@ import (
 )
 
 // Router func
-func RouterIP(g *echo.Group) {
-	g.GET("/ip", ip)
+func RouteHost(g *echo.Group) {
+	g.GET("/hostname", hostname)
 }
 
-// @Summary Get ip data
-// @Tags IP
+// @Summary Get hostname data
+// @Tags Hostname
 // @Accept application/json
 // @Produce application/json
 // @Success 200 {object} response.EchoR
 // @Failure 400 {object} response.EchoR
-// @Router /ip [get]
-func ip(c echo.Context) error {
+// @Router /hostname [get]
+func hostname(c echo.Context) error {
 	r := response.EchoResponse(c)
-	data := services.LocalIP()
+	data := services.Hostname()
 	return r.OK(data)
 }

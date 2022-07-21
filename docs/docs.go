@@ -16,7 +16,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/ip": {
+        "/hostname": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -25,9 +25,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "IP"
+                    "Hostname"
                 ],
-                "summary": "Get ip data",
+                "summary": "Get hostname data",
                 "responses": {
                     "200": {
                         "description": "OK",

@@ -3,8 +3,8 @@ package configs
 import "github.com/spf13/viper"
 
 type Config struct {
-	//  API URl
-	IpURI string `mapstructure:"IP_URI"`
+	AWSSecretKey string `mapstructure:"AWS_SECRET_KEY"`
+	AWSPublicId  string `mapstructure:"AWS_PUBLIC_ID"`
 }
 
 func LoadConfig() (config Config, err error) {

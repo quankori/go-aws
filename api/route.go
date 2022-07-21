@@ -9,6 +9,6 @@ import (
 func Router(e *echo.Echo) {
 
 	apiV1 := e.Group("")
-	controllers.RouterIP(apiV1)
+	controllers.RouteHost(apiV1)
 	controllers.RouterS3(apiV1)
 }

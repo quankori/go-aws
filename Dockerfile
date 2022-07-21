@@ -1,5 +1,5 @@
 # create image from the official Go image
-FROM golang:1.14
+FROM golang:1.17
 
 # golang specific variables
 ENV GO111MODULE=on \

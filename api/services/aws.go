@@ -53,7 +53,7 @@ func S3(files *multipart.FileHeader) *s3.PutObjectOutput {
 	buffer := make([]byte, size)
 	readFile.Read(buffer)
 
-	file, err := s3.New(session).PutObject(&s3.PutObjectInput{
+	file, _ := s3.New(session).PutObject(&s3.PutObjectInput{
 		Bucket:      aws.String(S3_BUCKET),
 		Key:         aws.String("new_root/" + uploadedFileName),
 		Body:        bytes.NewReader(buffer),
